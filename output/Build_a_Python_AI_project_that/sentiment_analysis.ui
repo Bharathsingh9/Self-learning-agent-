@@ -1,0 +1,134 @@
+python
+# sentiment_analysis.ui
+
+import tkinter as tk
+from tkinter import ttk
+from nltk.sentiment import SentimentIntensityAnalyzer
+from nltk import tokenize
+import nltk
+from nltk.corpus import vader_lexicon
+from tensorflow import keras
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+import pandas as pd
+
+# Sentiment analysis logic using VADER
+class SentimentAnalysisVB:
+    def __init__(self):
+        self.nltk.download('vader_lexicon')
+        self.sia = SentimentIntensityAnalyzer()
+
+    def analyze(self, text):
+        sentiment = self.sia.polarity_scores(text)
+        compound = sentiment['compound']
+        if compound >= 0.05:
+            return 'Positive'
+        elif compound <= -0.05:
+            return 'Negative'
+        else:
+            return 'Neutral'
+
+# Sentiment analysis logic using Naive Bayes
+class SentimentAnalysisNB:
+    def __init__(self):
+        self.train_data = self.load_train_data()
+        self.vectorizer = CountVectorizer()
+        self.vectorizer.fit(self.train_data["text"])
+        self.model = MultinomialNB()
+
+    def load_train_data(self):
+        # Assuming a CSV file containing text data and sentiment labels
+        return pd.read_csv("train_data.csv")
+
+    def train(self):
+        X_train, X_test, y_train, y_test = train_test_split(self.train_data["text"], self.train_data["label"], test_size=0.2, random_state=42)
+        X_train_count = self.vectorizer.transform(X_train)
+        self.model.fit(X_train_count, y_train)
+
+    def analyze(self, text):
+        text_count = self.vectorizer.transform([text])
+        return self.model.predict(text_count)[0]
+
+# Sentiment analysis logic using Logistic Regression
+class SentimentAnalysisLR:
+    def __init__(self):
+        self.train_data = self.load_train_data()
+        self.vectorizer = CountVectorizer()
+        self.vectorizer.fit(self.train_data["text"])
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(self.train_data["text"], self.train_data["label"], test_size=0.2, random_state=42)
+        self.X_train_count = self.vectorizer.transform(self.X_train)
+        self.model = LogisticRegression(max_iter=1000)
+
+    def load_train_data(self):
+        # Assuming a CSV file containing text data and sentiment labels
+        return pd.read_csv("train_data.csv")
+
+    def train(self):
+        self.model.fit(self.X_train_count, self.y_train)
+
+    def analyze(self, text):
+        text_count = self.vectorizer.transform([text])
+        return self.model.predict(text_count)[0]
+
+class SentimentAnalysisUI:
+    def __init__(self, root):
+        self.root = root
+        self.sentiment_models = {'VADER': SentimentAnalysisVB(), 'Naive Bayes': SentimentAnalysisNB(), 'Logistic Regression': SentimentAnalysisLR()}
+        self.current_model = 'VADER'
+        self.setup_ui()
+
+    def setup_ui(self):
+        # Sentiment analysis UI
+        self.sentiment_label = ttk.Label(self.root, text='Sentiment Analysis')
+        self.sentiment_label.pack()
+
+        self.model_label = ttk.Label(self.root, text='Select Model:')
+        self.model_label.pack()
+
+        self.model_option_var = tk.StringVar()
+        self.model_option_var.set('VADER')
+        self.model_option = ttk.OptionMenu(self.root, self.model_option_var, 'VADER', 'Naive Bayes', 'Logistic Regression')
+        self.model_option.pack()
+
+        self.analyze_button = ttk.Button(self.root, text='Analyze', command=self.analyze_text)
+        self.analyze_button.pack()
+
+        self.result_label = ttk.Label(self.root, text='')
+        self.result_label.pack()
+
+        self.train_button = ttk.Button(self.root, text='Train Models', command=self.train_models)
+        self.train_button.pack()
+
+    def train_models(self):
+        for model in self.sentiment_models.values():
+            if isinstance(model, SentimentAnalysisNB):
+                model.train()
+            elif isinstance(model, SentimentAnalysisLR):
+                model.train()
+        self.result_label['text'] = 'Training complete'
+
+    def analyze_text(self):
+        text = self.get_text_from_entry()
+        if text:
+            model = self.sentiment_models[self.current_model]
+            result = model.analyze(text)
+            self.result_label['text'] = result
+
+    def get_text_from_entry(self):
+        return tk.StringVar(self.root).get('sentiment_analysis_entry')
+
+def main():
+    root = tk.Tk()
+    app = SentimentAnalysisUI(root)
+    root.mainloop()
+
+if __name__ == '__main__':
+    main()
+
+
+This code provides a simple GUI application for sentiment analysis using VADER, Naive Bayes, and Logistic Regression. The user can select a sentiment analysis model from a dropdown menu and input a text to analyze. The application also includes a train button to train the Naive Bayes and Logistic Regression models.
+
+Note: This code assumes that you have the necessary libraries (tkinter, nltk, pandas, scikit-learn, and tensorflow) installed in your Python environment.

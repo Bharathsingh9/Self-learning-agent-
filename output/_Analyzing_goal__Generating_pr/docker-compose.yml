@@ -1,0 +1,14 @@
+version: '3'
+services:
+  bot:
+    build:。
+    environment:
+      - LANG=en_US.UTF-8
+      - API_ID=YOUR_API_ID
+      - API_HASH=YOUR_API_HASH
+    volumes:
+      - ./bot:/app
+      - ./env:/app/env
+    ports:
+      - "8000:8000"
+    restart: unless-stopped

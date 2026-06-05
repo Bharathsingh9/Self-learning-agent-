@@ -1,0 +1,27 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Scientific Calculator</title>
+</head>
+<body>
+    <h1>Calculator Results</h1>
+    <div id="result-container">
+        {% if results %}
+        {% for result in results %}
+        <div class="result">
+            <span class="expression">{{ result.expression }}</span>
+            <span class="result-value">{{ result.result }}</span>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>No calculations have been performed yet.</p>
+        {% endif %}
+    </div>
+    <a href="/calculator">Back to calculator</a>
+</body>
+</html>

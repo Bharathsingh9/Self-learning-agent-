@@ -1,0 +1,132 @@
+css
+/* 
+ * Bootstrap
+ */
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/mathquill/0.9.2/mathquill.css');
+
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css');
+
+/*
+ * Custom Styles
+ */
+
+.math-quill-container {
+  position: relative;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.math-quill-container textarea {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  resize: none;
+}
+
+.math-quill-container textarea:focus {
+  box-shadow: 0 0 5px #007bff;
+}
+
+.math-quill-container .eqn-area {
+  position: relative;
+  z-index: 2;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.math-quill-container .eqn-area:hover {
+  background-color: #f2f2f2;
+}
+
+.math-quill-container .eqn-area:focus {
+  background-color: #f2f2f2;
+  border-color: #66CCCC;
+  outline: none;
+}
+
+.math-quill-container .math-quill {
+  position: relative;
+  z-index: 1;
+  padding: 10px;
+}
+
+.math-quill-container .math-quill ol {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.math-quill-container .math-quill ol li {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.math-quill-container .math-quill ol li button {
+  font-family: 'MathJax_Math';
+  font-size: 18px;
+}
+
+.math-quill-container .math-quill ol li button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.math-quill-container .math-quill ol li button:active {
+  background-color: #0056B3;
+}
+
+.math-quill-container .math-quill ol li button[type='input'] {
+  display: none;
+}
+
+.math-quill-container .math-quill ol li button[type='input']:checked + label {
+  font-weight: bold;
+  color: #333;
+}
+
+.math-quill-container .math-quill ol li button[type='input']:checked + label + .eqn {
+  display: inline-block;
+}
+
+.math-quill-container .math-quill ol li button[type='input']:checked + label + .eqn span {
+  margin-right: 5px;
+}
+
+.math-quill-container .math-quill ol li button[type='input']:checked + label + .eqn span:first-child {
+  display: none;
+}
+
+.math-quill-container .math-quill ol li button[type='input']:checked + label + .eqn span:last-child {
+  margin-left: 5px;
+}
+
+.math-quill-container .math-quill ol li button[type='input']:checked + label + .eqn span:first-child::after {
+  content: '±';
+  margin: 0;
+  font-size: 18px;
+}
+
+.math-quill-container .math-quill ol li button[type='input']:checked + label + .eqn span:last-child::before {
+  content: '±';
+  margin: 0;
+  font-size: 18px;
+}
+
+.math-quill-container .math-quill ol li button[type='input']:checked ~ a {
+  font-weight: bold;
+  color: #333;
+}

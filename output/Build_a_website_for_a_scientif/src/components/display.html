@@ -1,0 +1,109 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .calculator {
+            width: 300px;
+            margin: 50px auto;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .display {
+            background-color: #f0f0f0;
+            text-align: right;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            font-size: 24px;
+        }
+        
+        .row {
+            padding-bottom: 10px;
+            display: flex;
+        }
+        
+        .button {
+            width: 50px;
+            height: 40px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            margin: 2px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .button:hover {
+            background-color: #3e8e41;
+        }
+        
+        .clear {
+            background-color: #f44336;
+        }
+        
+        .clear:hover {
+            background-color: #e91e63;
+        }
+        
+        .operator {
+            background-color: #0097a7;
+        }
+        
+        .operator:hover {
+            background-color: #00838f;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display"> </div>
+        <div class="row">
+            <button class="button" onClick="clearDisplay()">C</button>
+            <button class="button" onClick="backSpace()">&larr;</button>
+        </div>
+        <div class="row">
+            <button class="button" onClick="displayNumber(7)">7</button>
+            <button class="button" onClick="displayNumber(8)">8</button>
+            <button class="button" onClick="displayNumber(9)">9</button>
+            <button class="button" class="operator" onClick="displayOperator('*')">*</button>
+        </div>
+        <div class="row">
+            <button class="button" onClick="displayNumber(4)">4</button>
+            <button class="button" onClick="displayNumber(5)">5</button>
+            <button class="button" onClick="displayNumber(6)">6</button>
+            <button class="button" class="operator" onClick="displayOperator('/')">/</button>
+        </div>
+        <div class="row">
+            <button class="button" onClick="displayNumber(1)">1</button>
+            <button class="button" onClick="displayNumber(2)">2</button>
+            <button class="button" onClick="displayNumber(3)">3</button>
+            <button class="button" class="operator" onClick="displayOperator('-')">-</button>
+        </div>
+        <div class="row">
+            <button class="button zero" onClick="displayNumber(0)">0</button>
+            <button class="button" class="operator" onClick="displayOperator('+')">+</button>
+            <button class="button" class="operator" onClick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+This HTML file is a basic structure for a scientific calculator. The display of the calculator will be updated dynamically using JavaScript when user interacts with the calculator.
+
+The CSS rules are used to style the calculator, making it visually appealing. The JavaScript code in `script.js` will handle the calculation and update the display accordingly.
+
+The calculator layout is divided into rows, which contain buttons for digits, operators, and a clear button. The `display` div will show the current calculation.

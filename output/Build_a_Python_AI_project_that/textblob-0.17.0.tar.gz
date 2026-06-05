@@ -1,0 +1,115 @@
+**requirements.txt**
+
+nltk
+textblob
+tkinter
+
+
+**main.py**
+
+import nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+from textblob import TextBlob
+from tkinter import *
+import tkinter as tk
+from tkinter import scrolledtext
+
+# Download NLTK data if not already downloaded
+nltk.download('vader_lexicon')
+nltk.download('punkt')
+
+class SentimentAnalyzer:
+    def __init__(self):
+        self.root = tk.Tk()
+        self.root.title("Sentiment Analyzer")
+        self.label = tk.Label(self.root, text="Enter text:")
+        self.label.pack(side=tk.TOP)
+        self.text_area = scrolledtext.ScrolledText(self.root, width=50, height=10)
+        self.text_area.pack(side=tk.TOP)
+        self.sentiment_button = tk.Button(self.root, text="Analyze Sentiment", command=self.analyze_sentiment)
+        self.sentiment_button.pack(side=tk.TOP)
+        self.result_label = tk.Label(self.root, text="Result:")
+        self.result_label.pack(side=tk.TOP)
+        self.result_text = tk.Text(self.root, height=1, width=50)
+        self.result_text.pack(side=tk.TOP)
+
+    def analyze_sentiment(self):
+        text = self.text_area.get("1.0", tk.END)
+        blob = TextBlob(text)
+        self.result_text.delete('1.0', tk.END)
+        self.result_text.insert(tk.END, f"Subjectivity: {blob.sentiment.subjectivity}")
+        self.result_text.insert(tk.END, f"\nObjectivity: {blob.sentiment.objectivity}")
+        self.result_text.insert(tk.END, f"\nPositive Sentiment: {blob.sentiment.polarity}")
+
+    def run(self):
+        self.root.mainloop()
+
+if __name__ == "__main__":
+    analyzer = SentimentAnalyzer()
+    analyzer.run()
+
+
+**setup.py**
+
+import os
+from setuptools import setup, find_packages
+
+with open("README.md", 'r') as f:
+    long_description = f.read()
+
+setup(
+    name="sentiment-analyzer",
+    version="1.0",
+    packages=find_packages(),
+    include_package_data=True,
+    description="A simple sentiment analyzer using textblob",
+    long_description=long_description,
+    install_requires=['nltk', 'textblob', 'tkinter'],
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
+    python_requires='>=3.7',
+)
+
+
+**Makefile**
+makefile
+install:
+	pip3 install -U nltk
+	pip3 install -U textblob
+	pip3 install -U -r requirements.txt
+
+run:
+	python3 main.py
+
+build:
+	python3 setup.py sdist
+
+upload:
+	twine upload dist/*
+
+
+**README.md**
+markdown
+# Sentiment Analyzer
+
+A simple sentiment analyzer using textblob and tkinter for UI.
+
+## Prerequisites
+- Python 3.7 or later
+- nltk
+- textblob
+
+## Usage
+1. Clone the repository.
+2. Run `make install` to install the required packages.
+3. Run `make run` to start the application.
+
+
+**MANIFEST.in**
+makefile
+include *
+
+Run `make build` to build the package and `make upload` to upload it to PyPI.

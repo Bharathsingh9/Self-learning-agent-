@@ -1,0 +1,218 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">
+            <div class="display-container">
+                <input type="text" id="expression" disabled readonly>
+            </div>
+        </div>
+        <div class="keys">
+            <div class="row">
+                <div class="key" id="clear">C</div>
+                <div class="key" id="backspace">×</div>
+                <div class="key" id="sqrt"></div>
+                <div class="key" id="pi"></div>
+                <div class="key" id="exp"></div>
+                <div class="key" id="ln"></div>
+            </div>
+            <div class="row">
+                <div class="key" id="7">7</div>
+                <div class="key" id="8">8</div>
+                <div class="key" id="9">9</div>
+                <div class="key" id="divide">/</div>
+                <div class="key" id="multiply">*</div>
+            </div>
+            <div class="row">
+                <div class="key" id="4">4</div>
+                <div class="key" id="5">5</div>
+                <div class="key" id="6">6</div>
+                <div class="key" id="subtract">-</div>
+                <div class="key" id="add">+</div>
+            </div>
+            <div class="row">
+                <div class="key" id="1">1</div>
+                <div class="key" id="2">2</div>
+                <div class="key" id="3">3</div>
+                <div class="key" id="equals">=</div>
+            </div>
+            <div class="row">
+                <div class="key" id="0">0</div>
+                <div class="key" id="."></div>
+                <div class="key" id="power">x^y</div>
+            </div>
+        </div>
+        <div class="footer">
+            <a href="#"><img src="static/img/calculator-icon-hover.png" alt="Calculator Icon"></a>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.calculator {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    margin: 50px auto;
+}
+
+.display {
+    background-color: #fff;
+    padding: 10px;
+    text-align: right;
+}
+
+.display-container {
+    border-bottom: 1px solid #ddd;
+}
+
+.display input[type="text"] {
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    font-size: 24px;
+}
+
+.keys {
+    padding: 20px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.key {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    width: 60px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.key:hover {
+    background-color: #ddd;
+}
+
+.key#clear {
+    background-color: #ccc;
+}
+
+.footer {
+    padding: 10px;
+    text-align: center;
+}
+
+.footer img {
+    width: 50px;
+    height: auto;
+}
+
+
+
+document.getElementById("clear").addEventListener("click", () => {
+    document.getElementById("expression").value = "";
+});
+
+document.getElementById("backspace").addEventListener("click", () => {
+    let expression = document.getElementById("expression").value;
+    document.getElementById("expression").value = expression.substring(0, expression.length - 1);
+});
+
+document.getElementById("0").addEventListener("click", () => {
+    let expression = document.getElementById("expression").value;
+    document.getElementById("expression").value = expression + "0";
+});
+
+document.getElementById("1").addEventListener("click", () => {
+    let expression = document.getElementById("expression").value;
+    document.getElementById("expression").value = expression + "1";
+});
+
+document.getElementById("2").addEventListener("click", () => {
+    let expression = document.getElementById("expression").value;
+    document.getElementById("expression").value = expression + "2";
+});
+
+document.getElementById("3").addEventListener("click", () => {
+    let expression = document.getElementById("expression").value;
+    document.getElementById("expression").value = expression + "3";
+});
+
+document.getElementById("4").addEventListener("click", () => {
+    let expression = document.getElementById("expression").value;
+    document.getElementById("expression").value = expression + "4";
+});
+
+document.getElementById("5").addEventListener("click", () => {
+    let expression = document.getElementById("expression").value;
+    document.getElementById("expression").value = expression + "5";
+});
+
+document.getElementById("6").addEventListener("click", () => {
+    let expression = document.getElementById("expression").value;
+    document.getElementById("expression").value = expression + "6";
+});
+
+document.getElementById("7").addEventListener("click", () => {
+    let expression = document.getElementById("expression").value;
+    document.getElementById("expression").value = expression + "7";
+});
+
+document.getElementById("8").addEventListener("click", () => {
+    let expression = document.getElementById("expression").value;
+    document.getElementById("expression").value = expression + "8";
+});
+
+document.getElementById("9").addEventListener("click", () => {
+    let expression = document.getElementById("expression").value;
+    document.getElementById("expression").value = expression + "9";
+});
+
+document.getElementById("add").addEventListener("click", () => {
+    let expression = document.getElementById("expression").value;
+    document.getElementById("expression").value = expression + "+";
+});
+
+document.getElementById("subtract").addEventListener("click", () => {
+    let expression = document.getElementById("expression").value;
+    document.getElementById("expression").value = expression + "-";
+});
+
+document.getElementById("multiply").addEventListener("click", () => {
+    let expression = document.getElementById("expression").value;
+    document.getElementById("expression").value = expression + "*";
+});
+
+document.getElementById("divide").addEventListener("click", () => {
+    let expression = document.getElementById("expression").value;
+    document.getElementById("expression").value = expression + "/";
+});
+
+document.getElementById("equals").addEventListener("click", () => {
+    let expression = document.getElementById("expression").value;
+    try {
+        let result = eval(expression);
+        document.getElementById("expression").value = result;
+    } catch (e) {
+        document.getElementById("expression").value = "Error";
+    }
+});

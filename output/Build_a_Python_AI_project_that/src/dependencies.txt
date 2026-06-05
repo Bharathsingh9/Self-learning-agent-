@@ -1,0 +1,24 @@
+python
+# src/dependencies.txt
+
+# Libraries
+nlp
+sentence
+python
+numpy
+pandas
+scikit-learn
+spacy
+spacy[en_core_web_sm]
+textblob
+tkinter
+
+
+
+# Note: This is for pip install. The above will not directly work in a Python file 
+# You need to use pip by installing packages based on this list in a terminal.
+# pip install -r src/dependencies.txt
+
+
+
+# The actual implementation will be in src/app.py, this file is just for specifying dependencies

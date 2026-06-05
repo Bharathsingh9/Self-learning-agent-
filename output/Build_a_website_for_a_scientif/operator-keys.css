@@ -1,0 +1,73 @@
+css
+.operator-keys {
+  width: 100%;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 5px;
+  padding: 5px;
+}
+
+.operator-keys button {
+  background-color: #4CAF50;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.operator-keys button:hover {
+  background-color: #3e8e41;
+}
+
+.clear-button {
+  grid-column: span 2;
+}
+
+.operator-keys .divide {
+  background-color: #009999;
+}
+
+.operator-keys .multiply {
+  background-color: #009999;
+}
+
+.operator-keys .subtract {
+  background-color: #cc0000;
+}
+
+.operator-keys .add {
+  background-color: #00cc00;
+}
+
+.operator-keys .equals {
+  background-color: #4CAF50;
+  grid-column: span 2;
+}
+
+.operator-keys .clear {
+  background-color: #ff0000;
+  grid-column: span 2;
+}
+
+.operator-keys .decimal,
+.operator-keys .sign {
+  background-color: #009999;
+  width: 45px;
+}
+
+.operator-keys .percent,
+.operator-keys .square {
+  background-color: #cc00cc;
+}
+
+.operator-keys .sqrt,
+.operator-keys .x2 {
+  background-color: #00cc00;
+}
+
+.operator-keys .x3 {
+  background-color: #0033ff;
+}

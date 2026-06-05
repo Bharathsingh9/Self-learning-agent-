@@ -1,0 +1,63 @@
+python
+# Import necessary libraries
+import sys
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLineEdit, QPushButton, QLabel, QGridLayout
+from PyQt5.QtGui import QPalette, QColor
+from PyQt5.QtCore import pyqtSlot
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import nltk
+nltk.download('vader_lexicon')
+
+# Create sentiment analyzer
+sia = SentimentIntensityAnalyzer()
+
+class Window(QWidget):
+    def __init__(self):
+        super().__init__()
+
+        self.initUI()
+
+    def initUI(self):
+        self.setGeometry(200, 200, 400, 200)
+        self.setWindowTitle('Sentiment Analysis UI')
+
+        layout = QGridLayout()
+
+        label1 = QLabel("Enter text:")
+        self.textInput = QLineEdit()
+        label2 = QLabel("Result:")
+        self.resultLabel = QLabel()
+
+        button = QPushButton("Analyze Sentiment")
+        button.clicked.connect(self.analyzeSentiment)
+
+        layout.addWidget(label1, 0, 0)
+        layout.addWidget(self.textInput, 0, 1)
+        layout.addWidget(label2, 1, 0)
+        layout.addWidget(self.resultLabel, 1, 1)
+        layout.addWidget(button, 2, 0, 1, 2)
+
+        self.setLayout(layout)
+
+        palette = QPalette()
+        palette.setColor(QPalette.Window, QColor(40, 44, 52))
+        self.setPalette(palette)
+
+        self.show()
+
+    @pyqtSlot()
+    def analyzeSentiment(self):
+        text = self.textInput.text()
+        if text:
+            scores = sia.polarity_scores(text)
+            self.resultLabel.setText(f"Positive sentiment: {scores['pos'] * 100:.2f}%\nNegative sentiment: {scores['neg'] * 100:.2f}%\nNeutral sentiment: {scores['neu'] * 100:.2f}%")
+        else:
+            self.resultLabel.setText("Please enter some text.")
+
+def main():
+    app = QApplication(sys.argv)
+    ex = Window()
+    sys.exit(app.exec_())
+
+if __name__ == '__main__':
+    main()

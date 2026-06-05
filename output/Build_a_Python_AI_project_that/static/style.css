@@ -1,0 +1,73 @@
+css
+/* static/style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-control:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.button {
+    width: 100%;
+    height: 40px;
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #3e8e41;
+}
+
+.button:active {
+    background-color: #2e6e33;
+}
+
+.result {
+    margin-top: 20px;
+    color: #666;
+}
+
+.sentiment {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.sentiment-positive {
+    color: #8BC34A;
+}
+
+.sentiment-negative {
+    color: #f44336;
+}
+
+.sentiment-neutral {
+    color: #9e9e9e;
+}

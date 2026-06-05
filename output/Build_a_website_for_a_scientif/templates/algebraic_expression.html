@@ -1,0 +1,126 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Algebraic Expression Calculator</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Algebraic Expression Calculator</h1>
+        <div class="input-field">
+            <input type="text" id="display" disabled>
+        </div>
+        <div class="keyboard">
+            <div class="row">
+                <button id="btn-7">7</button>
+                <button id="btn-8">8</button>
+                <button id="btn-9">9</button>
+                <button id="btn-plus">+</button>
+            </div>
+            <div class="row">
+                <button id="btn-4">4</button>
+                <button id="btn-5">5</button>
+                <button id="btn-6">6</button>
+                <button id="btn-minus">-</button>
+            </div>
+            <div class="row">
+                <button id="btn-1">1</button>
+                <button id="btn-2">2</button>
+                <button id="btn-3">3</button>
+                <button id="btn-multiply">*</button>
+            </div>
+            <div class="row">
+                <button id="btn-x2">x^2</button>
+                <button id="btn-sqrt">√</button>
+                <button id="btn-division">/</button>
+                <button id="btn-c">C</button>
+            </div>
+            <div class="row">
+                <button id="btn-equals">=</button>
+                <button id="btn-sin">sin</button>
+                <button id="btn-cos">cos</button>
+                <button id="btn-tan">tan</button>
+            </div>
+        </div>
+        <div class="expression-field">
+            <textarea id="expression" disabled></textarea>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@11.5.0/dist/math.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
+
+
+
+/* style.css */
+.container {
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.input-field {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+#display {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.row {
+    display: flex;
+}
+
+button {
+    margin: 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #ccc;
+}
+
+.expression-field {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 20px;
+}
+
+#expression {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    resize: none;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .keyboard {
+        display: none;
+    }
+}

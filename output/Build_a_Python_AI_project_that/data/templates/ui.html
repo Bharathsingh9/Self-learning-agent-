@@ -1,0 +1,59 @@
+python
+import tkinter as tk
+from tkinter import messagebox
+import nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import numpy as np
+
+# Initialize NLTK data
+nltk.download('vader_lexicon')
+
+class SentimentApp(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title('Sentiment Analysis App')
+        self.geometry('400x300')
+
+        # Create text input frame
+        self.text_frame = tk.Frame(self)
+        self.text_label = tk.Label(self.text_frame, text='Enter text:')
+        self.text_label.pack(side=tk.LEFT)
+        self.text_entry = tk.Entry(self.text_frame, width=40)
+        self.text_entry.pack(side=tk.LEFT)
+        self.text_frame.pack(padx=10, pady=10)
+
+        # Create button frame
+        self.button_frame = tk.Frame(self)
+        self.analyze_button = tk.Button(self.button_frame, text='Analyze Sentiment', command=self.analyze_sentiment)
+        self.analyze_button.pack(side=tk.LEFT)
+        self.button_frame.pack(padx=10, pady=10)
+
+        # Create result frame
+        self.result_frame = tk.Frame(self)
+        self.result_label = tk.Label(self.result_frame, text='Result:')
+        self.result_label.pack(side=tk.TOP)
+        self.result_text = tk.Text(self.result_frame, height=10, width=40)
+        self.result_text.pack(side=tk.BOTTOM)
+        self.result_frame.pack(padx=10, pady=10)
+
+    def analyze_sentiment(self):
+        text = self.text_entry.get()
+        sia = SentimentIntensityAnalyzer()
+        sentiment = sia.polarity_scores(text)
+        compound = sentiment['compound']
+        if compound >= 0.05:
+            result = 'Positive'
+        elif compound <= -0.05:
+            result = 'Negative'
+        else:
+            result = 'Neutral'
+        self.result_text.delete(1.0, tk.END)
+        self.result_text.insert(tk.END, f'Sentiment: {result}\n')
+        self.result_text.insert(tk.END, f'Score: {np.round(compound, 2)}\n')
+        self.result_text.insert(tk.END, f'Pos: {np.round(sentiment["pos"], 2)}\n')
+        self.result_text.insert(tk.END, f'Neu: {np.round(sentiment["neu"], 2)}\n')
+        self.result_text.insert(tk.END, f'Neg: {np.round(sentiment["neg"], 2)}')
+
+if __name__ == '__main__':
+    app = SentimentApp()
+    app.mainloop()

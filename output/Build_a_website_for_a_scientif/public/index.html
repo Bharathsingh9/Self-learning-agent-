@@ -1,0 +1,161 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="display">
+            <input type="text" id="expression" disabled>
+            <input type="text" id="result" disabled>
+        </div>
+        <div class="buttons">
+            <button class="digit" onclick="append('7')">7</button>
+            <button class="digit" onclick="append('8')">8</button>
+            <button class="digit" onclick="append('9')">9</button>
+            <button class="operator" onclick="append('/')">/</button>
+            <button class="digit" onclick="append('4')">4</button>
+            <button class="digit" onclick="append('5')">5</button>
+            <button class="digit" onclick="append('6')">6</button>
+            <button class="operator" onclick="append('*')">*</button>
+            <button class="digit" onclick="append('1')">1</button>
+            <button class="digit" onclick="append('2')">2</button>
+            <button class="digit" onclick="append('3')">3</button>
+            <button class="operator" onclick="append('-')">-</button>
+            <button class="digit" onclick="append('0')">0</button>
+            <button class="digit" onclick="append('.')">.</button>
+            <button class="operator" onclick="append('+')">+</button>
+            <button class="clear" onclick="clearScreen()">C</button>
+            <button class="equal" onclick="calculate()">=</button>
+            <button class="operator" onclick="append('sin')">sin</button>
+            <button class="operator" onclick="append('cos')">cos</button>
+            <button class="operator" onclick="append('tan')">tan</button>
+            <button class="operator" onclick="append('^')">^</button>
+        </div>
+        <div class="scientific">
+            <button class="operator" onclick="append('ln')">ln</button>
+            <button class="operator" onclick="append('log')">log</button>
+            <button class="operator" onclick="append('exp')">exp</button>
+            <button class="operator" onclick="append('sqrt')">sqrt</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 300px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.display {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.display input {
+    width: 100%;
+    padding: 10px;
+    font-size: 24px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.digit, .operator, .clear, .equal {
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.digit:hover, .operator:hover, .clear:hover, .equal:hover {
+    background-color: #ccc;
+}
+
+.scientific {
+    margin-top: 20px;
+}
+
+.operator {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.operator:hover {
+    background-color: #3e8e41;
+}
+
+.clear {
+    background-color: #ff0000;
+    color: #fff;
+}
+
+.clear:hover {
+    background-color: #cc0000;
+}
+
+.equal {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.equal:hover {
+    background-color: #3e8e41;
+}
+
+
+
+// script.js
+let expression = "";
+let result = "";
+
+function append(char) {
+    expression += char;
+    document.getElementById("expression").value = expression;
+}
+
+function calculate() {
+    try {
+        result = eval(expression);
+        document.getElementById("result").value = result;
+        expression = result.toString();
+    } catch (e) {
+        document.getElementById("result").value = "Error";
+        expression = "";
+    }
+}
+
+function clearScreen() {
+    expression = "";
+    result = "";
+    document.getElementById("expression").value = "";
+    document.getElementById("result").value = "";
+}

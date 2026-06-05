@@ -1,0 +1,234 @@
+**index.html**
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Scientific Calculator</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Scientific Calculator</h1>
+        <input type="text" class="display" id="display" disabled>
+        <div class="controls">
+            <button class="button" id="clear">Clear</button>
+            <button class="button" id="backspace">Backspace</button>
+        </div>
+        <div class="keyboard">
+            <div class="row">
+                <button class="button" id="7">7</button>
+                <button class="button" id="8">8</button>
+                <button class="button" id="9">9</button>
+                <button class="button" id="divide">/</button>
+            </div>
+            <div class="row">
+                <button class="button" id="4">4</button>
+                <button class="button" id="5">5</button>
+                <button class="button" id="6">6</button>
+                <button class="button" id="multiply">*</button>
+            </div>
+            <div class="row">
+                <button class="button" id="1">1</button>
+                <button class="button" id="2">2</button>
+                <button class="button" id="3">3</button>
+                <button class="button" id="subtract">-</button>
+            </div>
+            <div class="row">
+                <button class="button" id="0">0</button>
+                <button class="button" id="decimal">.</button>
+                <button class="button" id="equals">=</button>
+                <button class="button" id="add">+</button>
+            </div>
+            <div class="row">
+                <button class="button" id="sin">sin</button>
+                <button class="button" id="cos">cos</button>
+                <button class="button" id="tan">tan</button>
+            </div>
+            <div class="row">
+                <button class="button" id="ln">ln</button>
+                <button class="button" id="log">log</button>
+                <button class="button" id="sqrt">sqrt</button>
+            </div>
+            <div class="row">
+                <button class="button" id="exp">exp</button>
+                <button class="button" id="10^x">10^x</button>
+                <button class="button" id="pi">pi</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+**styles.css**
+
+body {
+    font-family: 'calculator-font', Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 300px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.display {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: right;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+.controls button {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.controls button:hover {
+    background-color: #ccc;
+}
+
+.keyboard {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.row button {
+    width: 45%;
+    height: 45px;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.row button:hover {
+    background-color: #ccc;
+}
+
+.button {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #ccc;
+}
+
+
+**script.js**
+
+const display = document.getElementById('display');
+const buttons = document.querySelectorAll('button');
+
+let currentExpression = '';
+let lastExpression = '';
+
+buttons.forEach(button => {
+    button.addEventListener('click', calculateExpression);
+});
+
+function calculateExpression(event) {
+    const button = event.target;
+    const value = button.textContent;
+
+    if (value === 'Clear') {
+        currentExpression = '';
+        display.value = '';
+    } else if (value === 'Backspace') {
+        if (currentExpression.length > 0) {
+            currentExpression = currentExpression.slice(0, -1);
+            display.value = currentExpression;
+        }
+    } else if (value === 'sin') {
+        currentExpression += 'Math.sin(';
+        display.value = currentExpression;
+    } else if (value === 'cos') {
+        currentExpression += 'Math.cos(';
+        display.value = currentExpression;
+    } else if (value === 'tan') {
+        currentExpression += 'Math.tan(';
+        display.value = currentExpression;
+    } else if (value === 'ln') {
+        currentExpression += 'Math.log(';
+        display.value = currentExpression;
+    } else if (value === 'log') {
+        currentExpression += 'Math.log10(';
+        display.value = currentExpression;
+    } else if (value === 'sqrt') {
+        currentExpression += 'Math.sqrt(';
+        display.value = currentExpression;
+    } else if (value === 'exp') {
+        currentExpression += 'Math.exp(';
+        display.value = currentExpression;
+    } else if (value === '10^x') {
+        currentExpression += 'Math.pow(10, ';
+        display.value = currentExpression;
+    } else if (value === 'pi') {
+        currentExpression += 'Math.PI';
+        display.value = currentExpression;
+    } else {
+        if (value === '=') {
+            try {
+                const result = eval(currentExpression);
+                display.value = result;
+                lastExpression = currentExpression;
+                currentExpression = '';
+            } catch (e) {
+                display.value = 'Error';
+                currentExpression = lastExpression;
+            }
+        } else {
+            currentExpression += value;
+            display.value = currentExpression;
+        }
+    }
+
+    if (currentExpression.includes('=')) {
+        currentExpression = currentExpression.replace(/=+/, '');
+    }
+}
+
+// Set font
+document.body.style.fontFamily = "CalculatorFont";

@@ -1,0 +1,121 @@
+bash
+# requirements-dev.txt
+
+# NLP libraries
+nltk==3.7
+spacy==3.5.1
+scikit-learn==1.1.2
+
+# GUI libraries
+tkinter==8.6
+matplotlib==3.5.1
+pandas==1.4.1
+
+# Text processing libraries
+beautifulsoup4==4.11.1
+lxml==4.9.2
+
+# AI and machine learning libraries
+numpy==1.23.3
+scipy==1.9.0
+scikit-image==0.19.0
+scikit-learn==1.1.2
+openpyxl==3.0.10
+pandas==1.4.1
+
+# Other libraries
+requests==2.28.1
+
+
+
+# app.py
+
+import nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import tkinter as tk
+from tkinter import messagebox
+from tkinter import ttk
+from PIL import Image, ImageTk
+import numpy as np
+import pandas as pd
+import re
+from bs4 import BeautifulSoup
+from nltk.tokenize import word_tokenize
+
+# Download required NLTK data if not already downloaded
+nltk.download('vader_lexicon')
+nltk.download('punkt')
+
+class MyApp(tk.Tk):
+    def __init__(self):
+        tk.Tk.__init__(self)
+        self.title("Sentiment Analysis")
+        self.geometry("400x300")
+
+        # Create GUI elements
+        self.text_input = tk.Text(self, height=10, width=40)
+        self.text_input.pack(padx=10, pady=10)
+
+        self.analyze_button = tk.Button(self, text="Analyze", command=self.sentiment_analysis)
+        self.analyze_button.pack(padx=10, pady=10)
+
+        self.result_label = tk.Label(self, text="")
+        self.result_label.pack(padx=10, pady=10)
+
+    def sentiment_analysis(self):
+        text = self.text_input.get("1.0", tk.END)
+
+        # Remove special characters and convert to lowercase
+        cleaned_text = re.sub(r'[^a-zA-Z0-9\s]', '', text)
+        cleaned_text = cleaned_text.lower()
+
+        # Tokenize the text
+        tokens = word_tokenize(cleaned_text)
+
+        # Create a SentimentIntensityAnalyzer object
+        sia = SentimentIntensityAnalyzer()
+
+        # Analyze the sentiment of the text
+        sentiment = sia.polarity_scores(cleaned_text)
+
+        # Display the sentiment analysis result
+        result = f"Positive sentiment: {sentiment['pos']:.2f}\n"
+        result += f"Neutral sentiment: {sentiment['neu']:.2f}\n"
+        result += f"Negative sentiment: {sentiment['neg']:.2f}\n"
+        result += f"Compound sentiment: {sentiment['compound']:.2f}"
+
+        self.result_label.config(text=result)
+
+if __name__ == "__main__":
+    app = MyApp()
+    app.mainloop()
+
+
+
+# setup.py
+
+from setuptools import setup
+import os
+
+def read_file(filename):
+    with open(filename, 'r') as f:
+        return f.read()
+
+with open('requirements-dev.txt', 'r') as f:
+    requirements = f.read().splitlines()
+
+with open('README.md', 'r') as f:
+    long_description = f.read()
+
+setup(
+    name='sentiments',
+    version='1.0',
+    packages=[''],
+    author='Your Name',
+    author_email='your email address',
+    description='A Python package to analyze sentiment',
+    license='MIT',
+    keywords='sentiment analysis',
+    install_requires=requirements,
+    long_description=long_description,
+)

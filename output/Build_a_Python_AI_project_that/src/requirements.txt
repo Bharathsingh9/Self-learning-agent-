@@ -1,0 +1,32 @@
+bash
+# file src/requirements.txt
+
+# Natural Language Processing library for sentiment analysis
+nltk
+
+# Python library for natural language processing
+nlp
+
+# NLP toolkit for processing text
+sparcl
+
+# Python library for building user interface
+tkinter
+
+# Natural Language Toolkit (for sentiment analysis)
+pysent
+
+# TextBlob for simple text analysis
+textblob
+
+# For GUI application
+pillow
+
+# Required for textblob package
+pandas
+
+# For GUI application
+tkcalendar
+
+# For NLP
+spacy

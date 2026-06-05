@@ -1,0 +1,92 @@
+css
+body {
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 300px;
+  margin: 40px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.footer {
+  margin-top: 20px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.button {
+  width: 100%;
+  height: 40px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: #ddd;
+}
+
+.button.red {
+  background-color: #e74c3c;
+  color: #fff;
+}
+
+.button:hover.red {
+  background-color: #ce343f;
+}
+
+.display {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  cursor: text;
+}
+
+.display:hover {
+  background-color: #ddd;
+}
+
+.ac {
+  width: 100%;
+  height: 40px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.ac:hover {
+  background-color: #ddd;
+}
+
+
+This CSS file styles the layout of a scientific calculator website as per the task. It includes styles for various HTML elements like buttons, display, header, footer, etc.

@@ -1,0 +1,105 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Sentiment Analysis Results</h2>
+        <div class="analysis">
+            <div class="sentiment"></div>
+        </div>
+        <div class="text"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/natural@2.0.2/dist/natural.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+/* style.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    width: 80%;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.analysis {
+    margin-bottom: 20px;
+}
+
+.sentiment {
+    font-size: 24px;
+    font-weight: bold;
+    color: #777;
+}
+
+.text {
+    font-size: 16px;
+    color: #333;
+}
+
+
+
+// script.js
+// Note: This code requires the 'natural' and 'tfjs' libraries to be installed.
+//       You can install them using npm install natural tfjs.
+
+const natural = require('natural');
+const TfIdf = natural.TfIdf;
+
+class SentimentAnalysis {
+    constructor(modelPath) {
+        this.model = tf.loadLayersModel(modelPath);
+    }
+
+    async analyze(text) {
+        const tokenizer = new natural.WordTokenizer();
+        const words = tokenizer.tokenize(text);
+        const tfidf = new TfIdf();
+        words.forEach(word => tfidf.add(word));
+        const vectors = tfidf.tfidf(words);
+        const tensor = tf.tensor2d(vectors);
+
+        const output = await this.model.predict(tensor);
+        const sentiment = output.dataSync()[0];
+        tf.dispose(tensor);
+        tf.dispose(output);
+        return sentiment;
+    }
+}
+
+async function startAnalysis(text) {
+    const modelPath = 'path_to_your_model';
+    const analysis = new SentimentAnalysis(modelPath);
+    const sentiment = await analysis.analyze(text);
+    const sentimentString = sentiment < 0 ? 'Negative' : (sentiment > 0 ? 'Positive' : 'Neutral');
+    const textDiv = document.querySelector('.text');
+    const analysisDiv = document.querySelector('.sentiment');
+    textDiv.textContent = `Text: ${text}`;
+    analysisDiv.textContent = `Sentiment: ${sentimentString}`;
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    startAnalysis('');
+});
+
+
+Remember to replace `'path_to_your_model'` with the actual path to your trained model.

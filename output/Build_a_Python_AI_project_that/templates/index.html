@@ -1,0 +1,79 @@
+html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sentiment Analysis UI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group input[type="text"] {
+            width: 80%;
+            height: 40px;
+            padding: 10px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        
+        .input-group button[type="button"] {
+            width: 20%;
+            height: 40px;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        
+        .input-group button[type="button"]:hover {
+            background-color: #3e8e41;
+        }
+        
+        .result {
+            margin-top: 20px;
+        }
+        
+        .result .label {
+            font-weight: bold;
+        }
+        
+        .result .value {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="input-group">
+            <input type="text" id="input-text" placeholder="Enter text for sentiment analysis">
+            <button type="button" id="analyze-button">Analyze</button>
+        </div>
+        <div class="result">
+            <span class="label">Sentiment:</span>
+            <span class="value" id="sentiment-value"></span>
+            <span class="label">Score:</span>
+            <span class="value" id="sentiment-score"></span>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.13.0/dist/tf.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

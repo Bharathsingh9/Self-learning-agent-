@@ -1,0 +1,62 @@
+css
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    margin: 20px auto;
+    width: 500px;
+}
+
+.input-container {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.input-container .btn {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.input-container .btn:hover {
+    background-color: #3e8e41;
+}
+
+.result-container {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.result-container h2 {
+    margin-top: 0;
+}
+
+.result-container .sentiment {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.result-container .score {
+    font-size: 18px;
+    color: #666;
+}

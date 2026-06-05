@@ -1,0 +1,77 @@
+html
+/* button-styles.css */
+
+.button {
+  background-color: #4CAF50;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.button:hover {
+  background-color: #3e8e41;
+}
+
+.ac_button {
+  background-color: #4CAF50;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.ac_button:hover {
+  background-color: #3e8e41;
+}
+
+.equals {
+  background-color: #4CAF50;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.equals:hover {
+  background-color: #3e8e41;
+}
+
+.clear {
+  background-color: red;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.clear:hover {
+  background-color: #8b0a0a;
+}
+
+.decimal {
+  background-color: #4CAF50;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.decimal:hover {
+  background-color: #3e8e41;
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}

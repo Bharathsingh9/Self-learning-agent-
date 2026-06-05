@@ -1,0 +1,82 @@
+{ "files": [ 
+   {"path": "wireframe_description.txt", "content": 
+   
+# Calculator Wireframe: Basic Layout
+### Description
+A simple calculator UI with a display area and operator buttons
+
+### Display Area
+- **Calculation Display**: A 1-line text input displaying the current calculation
+  - Size: 40px
+  - Color: Dark Gray
+  - Placement: Centered, above the button area
+
+### Operator Buttons
+#### Row 1
+- **Clear Button** (C): Resets the display and clears the calculation
+  - Size: 25% of total width
+  - Placement: Top row, leftmost
+- **Backspace Button** (DEL): Deletes the last character from the display
+  - Size: 25% of total width
+  - Placement: Top row, between numbers 7 and 8
+- **Positive/Negative Button** (±): Toggles the sign of the current number
+  - Size: 25% of total width
+  - Placement: Top row, between numbers 6 and 7
+
+#### Row 2
+- **Number 7**: A digit button displaying the number 7
+  - Size: 25% of total width
+  - Placement: Second row
+- **Number 8**: A digit button displaying the number 8
+  - Size: 25% of total width
+  - Placement: Second row
+- **Number 9**: A digit button displaying the number 9
+  - Size: 25% of total width
+  - Placement: Second row
+- **Division Button** (÷): Performs division operation
+  - Size: 20% of total width
+  - Placement: Second row, rightmost
+
+#### Row 3
+- **Number 4**: A digit button displaying the number 4
+  - Size: 25% of total width
+  - Placement: Third row
+- **Number 5**: A digit button displaying the number 5
+  - Size: 25% of total width
+  - Placement: Third row
+- **Number 6**: A digit button displaying the number 6
+  - Size: 25% of total width
+  - Placement: Third row
+- **Multiplication Button** (x)
+  - Size: 20% of total width
+  - Placement: Third row, rightmost
+
+#### Row 4
+- **Number 1**: A digit button displaying the number 1
+  - Size: 25% of total width
+  - Placement: Fourth row
+- **Number 2**: A digit button displaying the number 2
+  - Size: 25% of total width
+  - Placement: Fourth row
+- **Number 3**: A digit button displaying the number 3
+  - Size: 25% of total width
+  - Placement: Fourth row
+- **Subtraction Button** (-)
+  - Size: 20% of total width
+  - Placement: Fourth row, rightmost
+
+#### Row 5
+- **Number 0**: A digit button displaying the number 0
+  - Size: 50% of total width
+  - Placement: Fifth row
+- **Decimal Point Button** (.)
+  - Size: 25% of total width
+  - Placement: Between numbers 2 and 3
+
+#### Row 6
+- **Equal Button** (=): Performs the operation and displays the result
+  - Size: 50% of total width
+  - Placement: Sixth row
+- **Addition Button** (+)
+  - Size: 25% of total width
+  - Placement: Right of the equals button

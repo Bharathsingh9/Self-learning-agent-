@@ -1,0 +1,200 @@
+python
+# src/vader_lexicon.txt
+
+0.000000 : (very good) -> 4.8 (very high)
+0.000000 : (very good) -> good
+0.000000 : (very good) -> excellent
+0.000000 : (good) -> 4.2 (high)
+0.000000 : (good) -> fine
+0.000000 : (good) -> satisfactory
+0.000000 : (neutral) -> 0 (neutral)
+0.000000 : (bad) -> 2.2 (low)
+0.000000 : (very bad) -> poor
+0.000000 : (very bad) -> terrible
+0.000000 : (very bad) -> awful
+4.8 : (very good) -> very good
+4.8 : (good) -> good
+4.8 : (neutral) -> neutral
+4.8 : (bad) -> bad
+4.8 : (very bad) -> very bad
+4.2 : (good) -> good
+4.2 : (neutral) -> neutral
+4.2 : (bad) -> poor
+4.2 : (very bad) -> terrible
+2.2 : (neutral) -> neutral
+2.2 : (bad) -> bad
+2.2 : (very bad) -> very bad
+0 : (neutral) -> neutral
+0 : (bad) -> poor
+0 : (very bad) -> terrible
+0 : (very good) -> excellent
+
+"0" : 0.000000
+"x" : 0.000000
+"1" : 0.000000
+"1." : 0.000000
+"2" : 0.000000
+"2." : 0.000000
+"3" : 0.000000
+"3." : 0.000000
+"4" : 0.000000
+"4." : 0.000000
+"5" : 0.000000
+"5." : 0.000000
+"6" : 0.000000
+"6." : 0.000000
+"7" : 0.000000
+"7." : 0.000000
+"8" : 0.000000
+"8." : 0.000000
+"9" : 0.000000
+"9." : 0.000000
+"10" : 0.000000
+"10." : 0.000000
+"11" : 0.000000
+"11." : 0.000000
+"12" : 0.000000
+"12." : 0.000000
+"13" : 0.000000
+"13." : 0.000000
+"14" : 0.000000
+"14." : 0.000000
+"15" : 0.000000
+"a" : 0.000000
+"allright" : 0.000000
+"allrighty" : 0.000000
+"always" : 0.000000
+"amazing!" : 4.8
+"and" : 0.000000
+"are" : 0.000000
+"as" : 0.000000
+"at" : 0.000000
+"attract!" : 0.000000
+"attraction" : 0.000000
+"attractions" : 0.000000
+"awesome" : 4.8
+"awesome!" : 4.8
+"awesome!" : 4.8
+"be" : 0.000000
+"beautiful" : 4.8
+"beautiful!" : 4.8
+"because" : 0.000000
+"been" : 0.000000
+"before" : 0.000000
+"being" : 0.000000
+"best" : 4.8
+"better" : 4.2
+"better!" : 4.2
+"better!" : 4.2
+"better!" : 4.2
+"bigger" : 4.2
+"biggest" : 4.8
+"biggest!" : 4.8
+"biggest!" : 4.8
+"biggest!" : 4.8
+"bigger" : 4.2
+"biggest" : 4.8
+"biggest" : 4.8
+"bill" : 0.000000
+"bitchin'" : 0.000000
+"bitchin'!" : 0.000000
+"blow!" : 0.000000
+"blow!?" : 0.000000
+"blow" : 0.000000
+"blown away" : 4.8
+"blown away!?" : 4.8
+"boots" : 0.000000
+"brainy!" : 4.8
+"brilliant!" : 4.8
+"brilliant!" : 4.8
+"but" : 0.000000
+"buy!" : 0.000000
+"buy!?" : 0.000000
+"buy!" : 0.000000
+"buy!" : 0.000000
+"buy!?" : 0.000000
+"buy!" : 0.000000
+"by" : 0.000000
+"call!" : 0.000000
+"call!" : 0.000000
+"can't" : 2.2
+"can't you?" : 2.2
+"can't!" : 2.2
+"certainly!" : 4.8
+"certainly!" : 4.8
+"certainly!" : 4.8
+"certainly!?" : 4.8
+"chaos!" : 4.8
+"cheap" : 0.000000
+"check!" : 0.000000
+"check!?" : 0.000000
+"check" : 0.000000
+"check" : 0.000000
+"check!" : 0.000000
+"check!" : 0.000000
+"check!?" : 0.000000
+"chic!" : 0.000000
+"chic" : 0.000000
+"chic" : 0.000000
+"chic!?" : 0.000000
+"chic!" : 0.000000
+"chic!" : 0.000000
+"dandy!" : 4.8
+"dandy!?" : 4.8
+"dandy!" : 4.8
+"dead" : 2.2
+"dead!" : 2.2
+"dead!" : 2.2
+"dead!" : 2.2
+"dead!?" : 2.2
+"decide!" : 0.000000
+"difference: not worth the money" : 0.000000
+"dig!" : 0.000000
+"dig!?" : 0.000000
+"dining" : 0.000000
+"dining!" : 0.000000
+"dining!?" : 0.000000
+"dish" : 0.000000
+"dish!" : 0.000000
+"dish!?" : 0.000000
+"dissapointing" : 0.000000
+"do" : 0.000000
+"do!" : 0.000000
+"do!" : 0.000000
+"do!?" : 0.000000
+"do" : 0.000000
+"don't do" : 2.2
+"don't do!" : 2.2
+"don't do?!" : 2.2
+"don't do!" : 2.2
+"don't! do it" : 2.2
+"don't! do it?!" : 2.2
+"do" : 0.000000
+"do" : 0.000000
+"do!?" : 0.000000
+"do!?" : 0.000000
+"does" : 0.000000
+"does!?" : 0.000000
+"does" : 0.000000
+"does!?" : 0.000000
+"does!" : 0.000000
+"dollar!" : 0.000000
+"dont" : 2.2
+"dont!" : 2.2
+"dont!?" : 2.2
+"down" : 0.000000
+"down!" : 0.000000
+"down!" : 0.000000
+"down!?" : 0.000000
+"download!" : 0.000000
+"download!" : 0.000000
+"download!?" : 0.000000
+"download!" : 0.000000
+"download!" : 0.000000
+"download!?" : 0.000000
+"dude" : 0.000000
+"dude" : 0.000000
+"dude" : 0.000000
+"dude" : 0.000000
+"dude" : 0.000000
+"dude:" :

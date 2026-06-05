@@ -1,0 +1,32 @@
+html
+<!-- src/templates/math_equation.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Equation Renderer</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mathquill@0.12.2/mathquill.css">
+</head>
+<body>
+    <div id="math-container"></div>
+    <script src="https://cdn.jsdelivr.net/npm/mathquill@0.12.2/mathquill.min.js"></script>
+    <script>
+        const mathContainer = document.getElementById('math-container');
+        const mathField = new MQ.MathField(mathContainer, {
+            // Allow typing and rendering of math equations in the browser
+            // Use TeX syntax and render math notation on the client side
+            spaceBehavesLikeTab: true,
+            // Support multiple math notations
+            // Notations: 'tex', 'mathml', 'asciimath'
+            mathmlV2: false,
+            // Allow drag and drop
+            drag: true,
+            // Allow resizing the math expression
+            resize: true,
+            // Allow selecting parts of the math expression
+            select: true,
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+python
+import nltk
+import tkinter as tk
+from tkinter import ttk
+import textblob
+import spacy
+from PIL import Image, ImageTk
+import requests
+from io import BytesIO
+
+# Install required libraries if not already installed
+nltk.download('punkt')
+nltk.download('wordnet')
+spacy.cli.download("en_core_web_sm")
+
+# Create the main window
+root = tk.Tk()
+root.title("Sentiment Analyzer")
+
+# Create the label
+label = ttk.Label(root, text="Enter text to analyze sentiment:")
+label.pack(pady=10)
+
+# Create the text entry field
+entry = ttk.Entry(root, width=50)
+entry.pack(pady=10)
+
+# Create the button
+button = ttk.Button(root, text="Analyze Sentiment", command=lambda: show_result(entry.get()))
+button.pack(pady=10)
+
+# Create the result label
+result_label = ttk.Label(root, text="")
+result_label.pack(pady=10)
+
+# Load the NLP model
+nlp = spacy.load('en_core_web_sm')
+
+def show_result(text):
+    # Analyze the sentiment using spaCy
+    doc = nlp(text)
+    sentiment = "Positive" if doc._.polarity > 0 else "Negative"
+
+    # Display the result
+    result_label.config(text=f"Sentiment: {sentiment}\nPolarity: {doc._.polarity:.4f}")
+
+root.mainloop()
+
+
+
+# Alternative using TextBlob (commented out)
+'''
+def show_result(text):
+    # Analyze the sentiment using TextBlob
+    blob = textblob.TextBlob(text)
+    sentiment = "Positive" if blob.sentiment.polarity > 0 else "Negative"
+
+    # Display the result
+    result_label.config(text=f"Sentiment: {sentiment}\nPolarity: {blob.sentiment.polarity:.4f}")
+'''

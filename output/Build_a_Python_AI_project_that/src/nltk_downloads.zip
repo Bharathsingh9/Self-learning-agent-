@@ -1,0 +1,65 @@
+python
+import nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+import tkinter as tk
+from tkinter import messagebox
+
+nltk.download('vader_lexicon', download_dir='./src')
+
+class SentimentAnalyzer:
+    def __init__(self):
+        self.window = tk.Tk()
+        self.window.title('Sentiment Analyzer')
+        self.text_label = tk.Label(self.window, text='Enter text to analyze:')
+        self.text_label.pack()
+        self.text_entry = tk.Text(self.window, height=10, width=50)
+        self.text_entry.pack()
+        self.analyze_button = tk.Button(self.window, text='Analyze', command=self.analyze_sentiment)
+        self.analyze_button.pack()
+        self.result_label = tk.Label(self.window, text='')
+        self.result_label.pack()
+
+    def analyze_sentiment(self):
+        text = self.text_entry.get('1.0', tk.END).strip()
+        if text:
+            sia = SentimentIntensityAnalyzer()
+            sentiment_scores = sia.polarity_scores(text)
+            overall_score = sentiment_scores['compound']
+            subjectivity_score = sentiment_scores['subjectivity']
+
+            if overall_score >= 0.05:
+                sentiment = 'Positive'
+            elif overall_score <= -0.05:
+                sentiment = 'Negative'
+            else:
+                sentiment = 'Neutral'
+
+            self.result_label.config(text=f'Sentiment Analysis Results:\n'
+                                         f'Polarity Score: {sentiment_scores["pos"]:.2f}\n'
+                                         f'Negative Sentiment: {sentiment_scores["neg"]:.2f}\n'
+                                         f'Neutral Sentiment: {sentiment_scores["neu"]:.2f}\n'
+                                         f'Subjectivity Score: {subjectivity_score:.2f}\n'
+                                         f'Overall Sentiment: {sentiment}')
+
+            if subjectivity_score > 0.05:
+                subjectivity = 'Subjective'
+            elif subjectivity_score < 0.05:
+                subjectivity = 'Objective'
+            else:
+                subjectivity = 'Neutral'
+
+            self.result_label.config(text=f'{subjectivity}')
+
+        else:
+            messagebox.showerror('Error', 'Please enter text to analyze.')
+
+    def start(self):
+        self.window.mainloop()
+
+if __name__ == '__main__':
+    nltk.data.path.append('./src')
+    analyzer = SentimentAnalyzer()
+    analyzer.start()
+
+
+Make sure the `nltk_downloads.zip` file is in the `./src` directory. If not, place it there and run the code. After that, you can remove the zip file.

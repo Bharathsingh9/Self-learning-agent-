@@ -1,0 +1,144 @@
+css
+/* scientific-calculator.css */
+
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.calculator {
+    width: 100%;
+    height: 250px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.display {
+    width: 100%;
+    height: 30px;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: right;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px 5px 0 0;
+}
+
+.keypad {
+    margin: 10px 0 10px 0;
+}
+
+.key {
+    width: 60px;
+    height: 60px;
+    font-size: 18px;
+    line-height: 60px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    padding: 0 10px;
+    cursor: pointer;
+}
+.key:focus {
+    outline: none;
+}
+.key:hover {
+    background-color: #f0f0f0;
+}
+.key:active {
+    background-color: #ccc;
+}
+
+.number-key {
+    background-color: #f0f0f0;
+}
+.number-key:hover {
+    background-color: #f5f5f5;
+}
+.number-key:active {
+    background-color: #ccc;
+}
+
+.operator-key {
+    background-color: #d9534f;
+    color: #ffffff;
+}
+.operator-key:hover {
+    background-color: #ea6153;
+}
+.operator-key:active {
+    background-color: #ce5c50;
+}
+
+.function-key {
+    background-color: #337ab7;
+    color: #ffffff;
+}
+.function-key:hover {
+    background-color: #337ab7;
+}
+.function-key:active {
+    background-color: #337ab7;
+}
+
+.special-key {
+    background-color: #5cb85c;
+    color: #ffffff;
+}
+.special-key:hover {
+    background-color: #5cb85c;
+}
+.special-key:active {
+    background-color: #3e8e41;
+}
+
+.clear-key {
+    background-color: #d9534f;
+    color: #ffffff;
+    width: 60px;
+    height: 60px;
+    font-size: 18px;
+    line-height: 60px;
+    text-align: center;
+}
+.clear-key:focus {
+    outline: none;
+}
+.clear-key:hover {
+    background-color: #ea6153;
+}
+.clear-key:active {
+    background-color: #ce5c50;
+}
+
+.equals-key {
+    background-color: #5cb85c;
+    color: #ffffff;
+    width: 60px;
+    height: 60px;
+    font-size: 18px;
+    line-height: 60px;
+    text-align: center;
+}
+>equals-key:focus {
+    outline: none;
+}
+>equals-key:hover {
+    background-color: #3e8e41;
+}
+>equals-key:active {
+    background-color: #3e8e41;
+}

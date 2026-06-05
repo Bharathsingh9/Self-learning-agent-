@@ -1,0 +1,11 @@
+
+Flask==2.0.3
+Flask-SQLAlchemy==2.5.1
+Flask-WTF==1.0.0
+python-dotenv==0.20.0
+Flask-Migrate==3.1.0
+ Werkzeug==2.0.2
+wtforms==3.0.1
+
+
+Note: This file is a text file that lists the dependencies for the Flask application. Each line represents a package or library, and the version number is specified. The Flask packages are listed first, followed by other packages that may be needed, such as for database management (Flask-SQLAlchemy) and form handling (Flask-WTF).

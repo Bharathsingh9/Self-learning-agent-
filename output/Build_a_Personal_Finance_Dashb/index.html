@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <style>
+        body {
+            background-color: #1a1d23;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #28282b;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Personal Finance Dashboard</h1>
+        <form id="add-expense-form">
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category"><br><br>
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount"><br><br>
+            <button type="submit">Add Expense</button>
+        </form>
+        <div id="expenses-container"></div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const addExpenseForm = document.getElementById("add-expense-form");
+        const expensesContainer = document.getElementById("expenses-container");
+        const chartCanvas = document.getElementById("myChart");
+
+        // Add event listener to form submission
+        addExpenseForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const category = document.getElementById("category").value;
+            const amount = parseFloat(document.getElementById("amount").value);
+            const response = await fetch('/add_expense', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({category, amount})
+            });
+            const expense = await response.json();
+            expensesContainer.innerHTML += `<p>${expense.category}: $${expense.amount}</p>`;
+            updateChart();
+        });
+
+        // Fetch initial expenses and render to UI
+        async function getExpenses() {
+            const response = await fetch('/get_expenses');
+            const expenses = await response.json();
+            expenses.forEach(expense => {
+                expensesContainer.innerHTML += `<p>${expense.category}: $${expense.amount}</p>`;
+            });
+            updateChart();
+        }
+
+        // Update chart with expense data
+        function updateChart() {
+            const expData = [];
+            const chartCtx = chartCanvas.getContext("2d");
+            chartCanvas.width = 400;
+            chartCanvas.height = 300;
+            const expenseData = document.querySelectorAll("#expenses-container p");
+            expenseData.forEach(expense => {
+                const category = expense.textContent.split(':')[0];
+                const amount = parseFloat(expense.textContent.split(':')[1].slice(1));
+                expData.push({label: category, data: [amount]});
+            });
+
+            const myChart = new Chart(chartCtx, {
+                type: 'bar',
+                data: {
+                    labels: expData.map(expense => expense.label),
+                    datasets: [{
+                        label: 'Expenses',
+                        data: expData.map(expense => expense.data[0]),
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)',
+                            'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)',
+                            'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        getExpenses();
+    </script>
+</body>
+</html>

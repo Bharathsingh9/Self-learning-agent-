@@ -1,0 +1,102 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="calculations.html">Calculations</a></li>
+                <li><a href="history.html">Calculation History</a></li>
+                <li><a href="login.html">Login/Signup</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Calculations</h1>
+        <article>
+            <p>Your saved calculations will appear here.</p>
+        </article>
+        <table id="calculations-table">
+            <thead>
+                <tr>
+                    <th>Equation</th>
+                    <th>Formula</th>
+                    <th>Result</th>
+                    <th>Date Created</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="calculations-tbody"></tbody>
+        </table>
+        <form id="new-calculation-form">
+            <h2>New Calculation</h2>
+            <label for="equation">Equation:</label>
+            <input type="text" id="equation" required>
+            <label for="formula">Formula:</label>
+            <input type="text" id="formula" required>
+            <input type="submit" value="Save Calculation">
+        </form>
+    </main>
+    <script src="script.js" defer></script>
+    <script src="https://apis.google.com/js/api.js" defer></script>
+</body>
+</html>
+
+
+
+// script.js
+const form = document.getElementById('new-calculation-form');
+const tbody = document.getElementById('calculations-tbody');
+
+form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const equation = document.getElementById('equation').value;
+    const formula = document.getElementById('formula').value;
+    const res = await fetch('/api/calculate', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ equation, formula })
+    });
+    const data = await res.json();
+    const row = document.createElement('tr');
+    row.innerHTML = `
+        <td>${equation}</td>
+        <td>${formula}</td>
+        <td>${data.result}</td>
+        <td>${data.dateCreated}</td>
+        <td>
+            <button onclick="deleteCalculation(${data.id})">Delete</button>
+        </td>
+    `;
+    tbody.appendChild(row);
+});
+
+async function deleteCalculation(id) {
+    await fetch(`/api/calculate/${id}`, {
+        method: 'DELETE'
+    });
+    tbody.innerHTML = '';
+    const data = await fetch('/api/calculate').then(res => res.json());
+    data.forEach((calculation, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${calculation.equation}</td>
+            <td>${calculation.formula}</td>
+            <td>${calculation.result}</td>
+            <td>${calculation.dateCreated}</td>
+            <td>
+                <button onclick="deleteCalculation(${calculation.id})">Delete</button>
+            </td>
+        `;
+        tbody.appendChild(row);
+    });
+}

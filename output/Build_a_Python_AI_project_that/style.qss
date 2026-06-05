@@ -1,0 +1,51 @@
+python
+# style.qss
+import sys
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import Qt
+
+class CustomStyle(QtWidgets.QStyle):
+    def __init__(self, parent=None):
+        super(CustomStyle, self).__init__(parent)
+
+    defpolish(self, widget):
+        super().polish(widget)
+        if isinstance(widget, QtWidgets.QTextEdit):
+            widget.setLineWrapMode(QtWidgets.QTextEdit.NoWrap)
+            widget.verticalScrollBar().setVisible(False)
+
+    defpolish(self, widget):
+        pass
+
+    def drawPrimitive(self, PE_IndicatorArrowUp, option, painter, rect, defects):
+        if option.state & QtWidgets.QStyle.State_On:
+            painter.setPen(Qt.NoPen)
+            painter.setBrush(Qt.cblue)
+        else:
+            painter.setPen(Qt.NoPen)
+            painter.setBrush(Qt.white)
+        painter.drawPolygon(rect.x(), rect.y(), rect.x() + rect.width(), rect.y(), rect.x() + rect.width(), rect.y() + rect.height(), rect.x(), rect.y() + rect.height())
+        super().drawPrimitive(PE_IndicatorArrowUp, option, painter, rect, defects)
+
+    def drawPrimitive(self, option, painter, rect, text_options, text):
+        super().drawPrimitive(option, painter, rect, text_options, text)
+
+    def drawControl(self, element, option, painter, rect, width):
+        if element == QtWidgets.QStyle.CE_HeaderLabel:
+            painter.setFont(QtGui.QFont('Arial', 8))
+            painter.setPen(Qt.blue)
+        painter.drawLine(rect.x(), rect.y(), rect.x() + rect.width(), rect.y())
+        super().drawControl(element, option, painter, rect, width)
+
+    def drawItemPixmap(self, option, painter, rect, pixmap):
+        painter.drawPixmap(rect.x(), rect.y(), rect.width(), rect.height(), pixmap)
+        super().drawItemPixmap(option, painter, rect, pixmap)
+
+    def drawItemText(self, painter, rect, flags, text, options, fontInfo):
+        painter.setFont(QtGui.QFont('Courier', 10))
+        painter.drawText(rect, flags, text)
+
+    def drawComplexControl(self, control, option, painter, rect):
+        if control == QtWidgets.QStyle.CC_ScrollButton:
+            painter.setRenderHint(painter.Antialiasing)
+        #super().drawComplexControl(control, option, painter, rect)

@@ -1,0 +1,70 @@
+css
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    width: 80%;
+    margin: 40px auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.input-group .input-field {
+    float: left;
+}
+
+.input-group-addon {
+    float: left;
+    padding: 10px;
+}
+
+.button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #3e8e41;
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.result .label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.result .value {
+    font-size: 16px;
+    font-weight: normal;
+}

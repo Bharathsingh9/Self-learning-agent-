@@ -1,0 +1,41 @@
+css
+/* src/css/variables.css */
+
+/* Colors */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --background-color: #f8f9fa;
+  --text-color: #333333;
+  --button-text-color: #ffffff;
+  --button-background-color: #007bff;
+  --button-hover-background-color: #0056b3;
+}
+
+/* Fonts */
+:root {
+  --font-family: Arial, sans-serif;
+  --font-size: 1rem;
+  --font-weight: normal;
+}
+
+/* Spacing */
+:root {
+  --padding: 1rem;
+  --margin: 1rem;
+}
+
+/* Border radius */
+:root {
+  --border-radius: 0.3rem;
+}
+
+/* Shadow */
+:root {
+  --box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Transition duration */
+:root {
+  --transition-duration: 0.2s;
+}

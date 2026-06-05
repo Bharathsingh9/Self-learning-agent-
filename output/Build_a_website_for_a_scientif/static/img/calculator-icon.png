@@ -1,0 +1,192 @@
+**calculator.html**
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="static/img/calculator-icon.png" alt="Calculator Icon">
+        <h1>Scientific Calculator</h1>
+    </header>
+    <main class="calculator">
+        <div class="input-field">
+            <input type="text" id="display" placeholder="0">
+        </div>
+        <div class="button-grid">
+            <div class="row">
+                <button class="button operator" data-op="+">&nbsp;+&nbsp;</button>
+                <button class="button operator" data-op="-">&nbsp;-&nbsp;</button>
+                <button class="button operator" data-op="*">&nbsp;*&nbsp;</button>
+                <button class="button operator" data-op="/">&nbsp;/&nbsp;</button>
+            </div>
+            <div class="row">
+                <button class="button" data-operator="sin">sin</button>
+                <button class="button" data-operator="cos">cos</button>
+                <button class="button" data-operator="tg">tan</button>
+                <button class="button" data-operator="log">log</button>
+            </div>
+            <div class="row">
+                <button class="button" data-operator="7">7</button>
+                <button class="button" data-operator="8">8</button>
+                <button class="button" data-operator="9">9</button>
+                <button class="button operator" data-op=">=">&nbsp;=&nbsp;</button>
+            </div>
+            <div class="row">
+                <button class="button" data-operator="4">4</button>
+                <button class="button" data-operator="5">5</button>
+                <button class="button" data-operator="6">6</button>
+                <button class="button operator" data-op=".">&nbsp;.&nbsp;</button>
+            </div>
+            <div class="row">
+                <button class="button" data-operator="1">1</button>
+                <button class="button" data-operator="2">2</button>
+                <button class="button" data-operator="3">3</button>
+                <button class="button operator" data-op="C">&nbsp;C&nbsp;</button>
+            </div>
+            <div class="row">
+                <button class="button" data-operator="0">0</button>
+                <button class="button" data-operator="+/-">&nbsp;+/-&nbsp;</button>
+                <button class="button" data-operator="%">&nbsp;%&nbsp;</button>
+            </div>
+            <div class="row">
+                <button class="button" data-operator="<|" >&#124;</button>
+                <button class="button" data-operator="exp">exp</button>
+                <button class="button" data-operator="sqrt">sqrt</button>
+                <button class="button" data-operator="pi">pi</button>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+**style.css**
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eee;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+header img {
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+}
+
+header h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.calculator {
+    max-width: 300px;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-field {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.input-field input {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    font-size: 24px;
+    border: none;
+    border-radius: 10px;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+    padding: 20px;
+}
+
+.button {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    background-color: #f7f7f7;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #ddd;
+}
+
+.operator {
+    background-color: #333;
+    color: #fff;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.operator:hover {
+    background-color: #444;
+}
+
+
+**script.js**
+
+let display = document.getElementById("display");
+let buttons = document.querySelectorAll(".button");
+let operation = document.getElementById("display");
+
+buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+        let value = button.getAttribute("data-operator") || button.textContent;
+        if (value === "=") {
+            calculate();
+        } else if (button.classList.contains("operator")) {
+            if (button.getAttribute("data-op") === "+") {
+                operation = "+";
+            } else if (button.getAttribute("data-op") === "-") {
+                operation = "-";
+            } else if (button.getAttribute("data-op") === "*") {
+                operation = "*";
+            } else if (button.getAttribute("data-op") === "/") {
+                operation = "/";
+            } else if (button.getAttribute("data-op") === ">=") {
+                operation = "=";
+            } else if (button.getAttribute("data-op") === ".") {
+                operation = ".";
+            } else if (button.getAttribute("data-op") === "C") {
+                display.value = "";
+                operation = "";
+            }
+        } else {
+            display.value += value;
+            operation = "";
+        }
+        display.value = display.value.replace(/^0+/, "");
+    });
+});
+
+function calculate() {
+    let equation = display.value;
+    let result = eval(equation);
+    display.value = result;
+}

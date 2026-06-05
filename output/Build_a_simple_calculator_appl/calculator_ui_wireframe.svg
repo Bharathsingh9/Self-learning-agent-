@@ -1,0 +1,123 @@
+xml
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   id="svg1"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.1"
+   viewBox="0 0 250 300"
+   width="250"
+   height="300"
+   preserveAspectRatio="xMidYMid meet"
+   fit-to-view="false"
+   style="enable-background:new 0 0 250 300;"
+>
+
+<g id="page" transform="translate(1,1)">
+<g id="layer1">
+  <!-- Button Group -->
+  <g id="button-group" transform="translate(20,100)">
+    <path
+      id="button-0" xlink:href="#button-0-template"
+      d="M 0,0 20,0 20,20 0,20 Z"
+      stroke="#FFFFFF" stroke-width="2"
+      fill="#333333" fill-rule="evenodd"
+    />
+    <path
+      id="button-1" xlink:href="#button-1-template"
+      d="M 0,0 30,0 30,15 0,15 Z"
+      stroke="#FFFFFF" stroke-width="2"
+      fill="#333333" fill-rule="evenodd"
+    />
+    <path
+      id="button-2" xlink:href="#button-2-template"
+      d="M 0,0 30,0 15,20 0,20 Z"
+      stroke="#FFFFFF" stroke-width="2"
+      fill="#333333" fill-rule="evenodd"
+    />
+    <path
+      id="button-3" xlink:href="#button-3-template"
+      d="M 20,0 40,0 40,30 20,30 Z"
+      stroke="#FFFFFF" stroke-width="2"
+      fill="#333333" fill-rule="evenodd"
+    />
+    <path
+      id="button-4" xlink:href="#button-4-template"
+      d="M 20,0 40,0 30,20 20,20 Z"
+      stroke="#FFFFFF" stroke-width="2"
+      fill="#333333" fill-rule="evenodd"
+    />
+    <path
+      id="button-5" xlink:href="#button-5-template"
+      d="M 0,0 30,10 15,30 0,30 Z"
+      stroke="#FFFFFF" stroke-width="2"
+      fill="#333333" fill-rule="evenodd"
+    />
+    <path
+      id="button-6" xlink:href="#button-6-template"
+      d="M 0,0 30,20 30,30 0,30 Z"
+      stroke="#FFFFFF" stroke-width="2"
+      fill="#333333" fill-rule="evenodd"
+    />
+    <path
+      id="button-7" xlink:href="#button-7-template"
+      d="M 40,0 60,0 60,30 40,30 Z"
+      stroke="#FFFFFF" stroke-width="2"
+      fill="#333333" fill-rule="evenodd"
+    />
+    <path
+      id="button-8" xlink:href="#button-8-template"
+      d="M 40,0 60,0 45,20 40,20 Z"
+      stroke="#FFFFFF" stroke-width="2"
+      fill="#333333" fill-rule="evenodd"
+    />
+    <path
+      id="button-9" xlink:href="#button-9-template"
+      d="M 40,20 60,20 45,30 40,30 Z"
+      stroke="#FFFFFF" stroke-width="2"
+      fill="#333333" fill-rule="evenodd"
+    />
+    <path
+      id="button-add" xlink:href="#button-add-template"
+      d="M 15,0 30,15 45,0 60,15 Z"
+      stroke="#FFFFFF" stroke-width="2"
+      fill="#333333" fill-rule="evenodd"
+    />
+    <path
+      id="button-subtract" xlink:href="#button-subtract-template"
+      d="M 15,0 30,15 45,0 40,15 Z"
+      stroke="#FFFFFF" stroke-width="2"
+      fill="#333333" fill-rule="evenodd"
+    />
+    <path
+      id="button-multiply" xlink:href="#button-multiply-template"
+      d="M 15,20 30,30 45,20 60,30 Z"
+      stroke="#FFFFFF" stroke-width="2"
+      fill="#333333" fill-rule="evenodd"
+    />
+    <path
+      id="button-divide" xlink:href="#button-divide-template"
+      d="M 15,20 30,25 45,10 Z"
+      stroke="#FFFFFF" stroke-width="2"
+      fill="#333333" fill-rule="evenodd"
+    />
+    <path
+      id="button-clear" xlink:href="#button-clear-template"
+      d="M 10,20 50,20 Z"
+      stroke="#FFFFFF" stroke-width="2"
+      fill="#333333" fill-rule="evenodd"
+    />
+  </g>
+
+  <!-- Display Group -->
+  <g id="display-group" transform="translate(40,10)">
+    <rect
+      id="display" x="-5" y="0" width="60" height="20"
+      fill="#CCCCCC" fill-rule="nonzero" rx="5"
+      stroke="#000000" stroke-width="1"
+    />
+  </g>
+</g>
+</svg>

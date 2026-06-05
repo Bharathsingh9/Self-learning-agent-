@@ -1,0 +1,178 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        #display {
+            width: 300px;
+            height: 50px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-size: 24px;
+            font-family: monospace;
+            text-align: right;
+        }
+        
+        #buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        
+        button {
+            width: 100%;
+            height: 50px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #cccccc;
+        }
+        
+        .operator {
+            background-color: #ff9900;
+        }
+    </style>
+</head>
+<body>
+    <h1>Scientific Calculator</h1>
+    <div id="display"></div>
+    <div id="buttons">
+        <button class="digit">7</button>
+        <button class="digit">8</button>
+        <button class="digit">9</button>
+        <button class="operator">/</button>
+        <button class="digit">4</button>
+        <button class="digit">5</button>
+        <button class="digit">6</button>
+        <button class="operator">*</button>
+        <button class="digit">1</button>
+        <button class="digit">2</button>
+        <button class="digit">3</button>
+        <button class="operator">-</button>
+        <button class="digit">0</button>
+        <button class="digit">.</button>
+        <button class="operator">+</button>
+        <button class="operator">=</button>
+        <button class="operator">C</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+// script.js
+
+let displayValue = "0";
+let previousValue = "0";
+let currentOperation = "";
+
+document.addEventListener("DOMContentLoaded", function () {
+    updateDisplay();
+
+    const buttons = document.querySelectorAll("#buttons button");
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const className = button.className;
+            const value = button.textContent;
+            handleButtonPress(className, value);
+        });
+    });
+});
+
+function updateDisplay() {
+    document.getElementById("display").innerHTML = displayValue;
+}
+
+function handleButtonPress(className, value) {
+    switch (className) {
+        case "digit":
+            handleDigitPress(value);
+            break;
+        case "operator":
+            handleOperatorPress(value);
+            break;
+        case "operator=C":
+            handleClearPress();
+            break;
+        default:
+            break;
+    }
+}
+
+function handleDigitPress(value) {
+    if (displayValue === "0") {
+        displayValue = value;
+    } else {
+        displayValue += value;
+    }
+    updateDisplay();
+}
+
+function handleOperatorPress(value) {
+    if (currentOperation !== "") {
+        const result = calculateResult();
+        displayValue = result;
+    }
+    currentOperation = value;
+    previousValue = displayValue;
+    displayValue = "";
+    updateDisplay();
+}
+
+function handleClearPress() {
+    displayValue = "0";
+    currentOperation = "";
+    previousValue = "0";
+    updateDisplay();
+}
+
+function calculateResult() {
+    let result;
+    switch (currentOperation) {
+        case "+":
+            result = parseFloat(previousValue) + parseFloat(displayValue);
+            break;
+        case "-":
+            result = parseFloat(previousValue) - parseFloat(displayValue);
+            break;
+        case "*":
+            result = parseFloat(previousValue) * parseFloat(displayValue);
+            break;
+        case "/":
+            result = parseFloat(previousValue) / parseFloat(displayValue);
+            break;
+        default:
+            break;
+    }
+    return result.toPrecision(10);
+}
+
+function evaluateExpression() {
+    try {
+        const expression = displayValue;
+        const result = eval(expression);
+        displayValue = result.toPrecision(10);
+        updateDisplay();
+        currentOperation = "";
+        previousValue = displayValue;
+    } catch (error) {
+        displayValue = "Error";
+        updateDisplay();
+        currentOperation = "";
+        previousValue = displayValue;
+    }
+}

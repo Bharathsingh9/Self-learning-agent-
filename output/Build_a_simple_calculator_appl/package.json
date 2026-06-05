@@ -1,0 +1,16 @@
+json
+{
+  "name": "calculator-app",
+  "version": "1.0.0",
+  "description": "A simple calculator application",
+  "main": "script.js",
+  "scripts": {
+    "start": "node_modules/http-server/bin/http-server -a localhost -p 8080"
+  },
+  "keywords": [],
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "http-server": "^13.0.0-0"
+  }
+}

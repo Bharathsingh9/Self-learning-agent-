@@ -1,0 +1,253 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="static/images/calculator-icon.png" alt="Calculator Icon">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#basic-ops">Basic Operations</a></li>
+                    <li><a href="#scientific-ops">Scientific Operations</a></li>
+                    <li><a href="#trigonometric-ops">Trigonometric Operations</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="calculator">
+            <div class="display">
+                <input type="text" id="calc-display" disabled>
+            </div>
+            <div class="controls">
+                <div class="number-keys">
+                    <button class="number-btn" id="0">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</button>
+                    <button class="number-btn" id="1">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</button>
+                    <button class="number-btn" id="2">&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;</button>
+                    <button class="number-btn" id="3">&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;</button>
+                    <button class="number-btn" id="4">&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;</button>
+                    <button class="number-btn" id="5">&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;</button>
+                    <button class="number-btn" id="6">&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;</button>
+                    <button class="number-btn" id="7">&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;</button>
+                    <button class="number-btn" id="8">&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;</button>
+                    <button class="number-btn" id="9">&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;</button>
+                </div>
+                <div class="operator-keys">
+                    <button class="operator-btn" id="add">+</button>
+                    <button class="operator-btn" id="subtract">-</button>
+                    <button class="operator-btn" id="multiply">*</button>
+                    <button class="operator-btn" id="divide">/</button>
+                    <button class="operator-btn" id="mod">%</button>
+                </div>
+                <div class="scientific-keys">
+                    <button class="scientific-btn" id="sin">sin</button>
+                    <button class="scientific-btn" id="cos">cos</button>
+                    <button class="scientific-btn" id="tan">tan</button>
+                    <button class="scientific-btn" id="pi">π</button>
+                    <button class="scientific-btn" id="exp">e^x</button>
+                    <button class="scientific-btn" id="sqrt">√</button>
+                    <button class="scientific-btn" id="ce">CE</button>
+                </div>
+                <div class="equal-clear-keys">
+                    <button class="equal-btn" id="equals">=</button>
+                    <button class="clear-btn" id="clear">C</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+/* style.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo {
+    width: 100px;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav a {
+    text-decoration: none;
+    color: #337ab7;
+}
+
+nav a:hover {
+    color: #23527c;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.display {
+    width: 100%;
+    height: 50px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.number-keys, .operator-keys, .scientific-keys, .equal-clear-keys {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.number-keys button, .operator-btn button, .scientific-btn button {
+    width: 40px;
+    height: 40px;
+    background-color: #f0f0f0;
+    border: none;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.number-keys button:hover, .operator-btn button:hover, .scientific-btn button:hover {
+    background-color: #e8e8e8;
+}
+
+.operator-btn button, .scientific-btn button {
+    width: 50px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.operator-keys button, .scientific-keys button {
+    width: 40px;
+    height: 40px;
+}
+
+.equal-clear-keys button {
+    width: 100%;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.equal-clear-keys button:hover {
+    background-color: #e8e8e8;
+}
+
+#calc-display {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+
+// script.js
+const numberButtons = document.querySelectorAll('#calc-display ~ .number-keys button');
+const operatorButtons = document.querySelectorAll('.operator-keys button');
+const scientificButtons = document.querySelectorAll('.scientific-keys button');
+const equalButton = document.querySelector('.equal-clear-keys button:last-child');
+const clearButton = document.querySelector('.equal-clear-keys button:first-child');
+let expression = '';
+let result = 0;
+
+numberButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const value = button.textContent;
+        expression += value;
+        document.getElementById('calc-display').value = expression;
+    });
+});
+
+operatorButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const value = button.textContent;
+        expression += value;
+        document.getElementById('calc-display').value = expression;
+        evaluateExpression();
+    });
+});
+
+scientificButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const value = button.textContent;
+        expression += value;
+        document.getElementById('calc-display').value = expression;
+        evaluateExpression();
+    });
+});
+
+equalButton.addEventListener('click', evaluateExpression);
+
+clearButton.addEventListener('click', () => {
+    expression = '';
+    document.getElementById('calc-display').value = '';
+});
+
+function evaluateExpression() {
+    try {
+        result = eval(expression);
+        document.getElementById('calc-display').value = result;
+        expression = result.toString();
+    } catch (error) {
+        document.getElementById('calc-display').value = 'Error';
+        expression = '';
+    }
+}

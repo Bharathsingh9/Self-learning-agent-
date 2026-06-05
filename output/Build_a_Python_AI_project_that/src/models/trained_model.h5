@@ -1,0 +1,63 @@
+python
+# Import necessary libraries
+import numpy as np
+import pandas as pd
+from typing import Dict
+import pickle
+from sklearn.feature_extraction.text import TfidfVectorizer
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+from nltk import download
+from matplotlib import pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import tkinter as tk
+from tkinter import messagebox
+from keras.models import load_model
+from nltk.corpus import stopwords
+download('punkt')
+download('wordnet')
+
+# Initialize the lemmatizer and stopwords
+lemmatizer = WordNetLemmatizer()
+stop_words = set(stopwords.words('english'))
+
+class SentimentAnalysis:
+    def __init__(self, root):
+        self.root = root
+        self.root.title('Sentiment Analysis')
+        self.model = load_model('src/models/trained_model.h5')
+        self.vectorizer = pickle.load(open('src/models/vectorizer.pkl', 'rb'))
+        self.text_box = tk.Text(self.root, height=10, width=100)
+        self.text_box.pack(padx=10, pady=10)
+        self.result_label = tk.Label(self.root, text='')
+        self.result_label.pack(padx=10, pady=10)
+        self.figure, self.axis = plt.subplots()
+        self.canvas = FigureCanvasTkAgg(self.figure, master=self.root)
+        self.canvas.draw()
+        self.canvas.get_tk_widget().pack(side=tk.BOTTOM, fill=tk.BOTH, expand=1)
+        self.button = tk.Button(self.root, text='Analyze', command=self.analyze_sentiment)
+        self.button.pack(padx=10, pady=10)
+
+    def preprocess_text(self, text: str) -> str:
+        tokens = word_tokenize(text)
+        tokens = [lemmatizer.lemmatize(token.lower()) for token in tokens if token.isalpha() and token.lower() not in stop_words]
+        return ' '.join(tokens)
+
+    def analyze_sentiment(self):
+        text = self.text_box.get('1.0', 'end-1c')
+        text = self.preprocess_text(text)
+        vector = self.vectorizer.transform([text])
+        prediction = self.model.predict(vector)
+        self.axis.clear()
+        self.axis.bar(['Positive', 'Negative'], prediction.flatten())
+        self.canvas.draw()
+        if prediction[0][0] >= prediction[0][1]:
+            self.result_label['text'] = f'Text sentiment: Positive ({prediction[0][0]*100:.2f}%)'
+        else:
+            self.result_label['text'] = f'Text sentiment: Negative ({prediction[0][1]*100:.2f}%)'
+
+if __name__ == '__main__':
+    root = tk.Tk()
+    app = SentimentAnalysis(root)
+    root.mainloop()

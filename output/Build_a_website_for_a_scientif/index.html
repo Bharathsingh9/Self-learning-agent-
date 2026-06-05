@@ -1,0 +1,195 @@
+html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">
+            <input type="text" id="display" disabled>
+        </div>
+        <div class="buttons">
+            <div class="operators">
+                <button id="clear">C</button>
+                <button id="del">DEL</button>
+                <button class="operator" id="equal">=</button>
+            </div>
+            <div class="numbers">
+                <button class="digit" id="0">0</button>
+                <button class="digit" id="1">1</button>
+                <button class="digit" id="2">2</button>
+                <button class="digit" id="3">3</button>
+                <button class="digit" id="4">4</button>
+                <button class="digit" id="5">5</button>
+                <button class="digit" id="6">6</button>
+                <button class="digit" id="7">7</button>
+                <button class="digit" id="8">8</button>
+                <button class="digit" id="9">9</button>
+                <button class="operator" id="decimal">.</button>
+            </div>
+            <div class="functions">
+                <button class="operator" id="add">+</button>
+                <button class="operator" id="subtract">-</button>
+                <button class="operator" id="multiply">*</button>
+                <button class="operator" id="divide">/</button>
+                <button class="operator" id="power">^</button>
+                <button class="operator" id="sqrt">√</button>
+                <button class="operator" id="sin">sin</button>
+                <button class="operator" id="cos">cos</button>
+                <button class="operator" id="tan">tan</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+And the corresponding CSS in the style.css file:
+
+
+.calculator {
+    width: 300px;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.display {
+    width: 100%;
+    height: 50px;
+    background-color: #000;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 20px;
+    text-align: right;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.display input {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #000;
+    color: #fff;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+}
+
+.operators {
+    width: calc(100% / 4);
+    display: flex;
+    flex-direction: column;
+}
+
+.operators button {
+    width: 100%;
+    height: calc(100% / 2);
+    border: none;
+    border-radius: 10px;
+    background-color: #333;
+    color: #fff;
+    font-size: 15px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.operators button:hover {
+    background-color: #444;
+}
+
+.numbers {
+    width: calc(100% / 3);
+    display: flex;
+    flex-direction: column;
+}
+
+.numbers button {
+    width: 100%;
+    height: calc(100% / 3);
+    border: none;
+    border-radius: 10px;
+    background-color: #333;
+    color: #fff;
+    font-size: 15px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.numbers button:hover {
+    background-color: #444;
+}
+
+.functions {
+    width: calc(100% / 4);
+    display: flex;
+    flex-direction: column;
+}
+
+.functions button {
+    width: 100%;
+    height: calc(100% / 3);
+    border: none;
+    border-radius: 10px;
+    background-color: #333;
+    color: #fff;
+    font-size: 15px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.functions button:hover {
+    background-color: #444;
+}
+
+.operator {
+    background-color: #777;
+    color: #fff;
+}
+
+.operator:hover {
+    background-color: #888;
+}
+
+.digit {
+    background-color: #555;
+    color: #fff;
+}
+
+.digit:hover {
+    background-color: #666;
+}
+
+.decimal {
+    background-color: #777;
+    color: #fff;
+}
+
+.decimal:hover {
+    background-color: #888;
+}
+
+#clear {
+    background-color: #ccc;
+    color: #000;
+}
+
+#clear:hover {
+    background-color: #bbb;
+}

@@ -1,0 +1,48 @@
+html
+<!-- templates/calculation_history.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculation History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculation History</h1>
+    <div class="history-container">
+        <table id="calculation-history">
+            <tr>
+                <th>Operation</th>
+                <th>Result</th>
+                <th>Date/Time</th>
+            </tr>
+            {% for entry in history %}
+            <tr>
+                <td>{{ entry.operation }}</td>
+                <td>{{ entry.result }}</td>
+                <td>{{ entry.datetime }}</td>
+                {% if entry.exception %}
+                <td>{{ entry.exception }}</td>
+                {% else %}
+                <td></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div>
+        {% if not empty %}
+        <a href="{{ back_url }}">Back to Calculator</a>
+        {% else %}
+        <a href="{{ dashboard_url }}">Go to Dashboard</a>
+        {% endif %}
+    </div>
+</body>
+</html>

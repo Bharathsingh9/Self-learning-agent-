@@ -1,0 +1,79 @@
+python
+# main.py
+import sys
+import tkinter as tk
+from tkinter import scrolledtext
+import requests
+from io import BytesIO
+import zipfile
+import spacy
+from spacy import displacy
+
+# Load the spaCy model
+try:
+    nlp = spacy.load("en_core_web_sm")
+except Exception as e:
+    # Download the model if not available locally
+    if e.name == "model_not_loaded":
+        url = "https://raw.githubusercontent.com/explosion/spacy-models/master/en_core_web_sm/en_core_web_sm-2.3.1.tar.gz"
+        model_url = url
+        response = requests.get(model_url)
+        zip_file = zipfile.ZipFile(BytesIO(response.content))
+        zip_file.extractall("./src/")
+        nlp = spacy.load("./src/en_core_web_sm/en_core_web_sm")
+    else:
+        raise e
+
+# Function to get sentiment
+def get_sentiment(text):
+    doc = nlp(text)
+    sentiment = "Positive"
+    for token in doc:
+        if token.pos_ == "VERB" and token.lemma_ == "hate":
+            sentiment = "Negative"
+            break
+    for token in doc:
+        if token.pos_ == "VERB" and token.lemma_ == "love":
+            sentiment = "Positive"
+            break
+    return sentiment
+
+# Function to get entity analysis
+def get_entity_analysis(text):
+    doc = nlp(text)
+    entities = [(entity.text, entity.label_) for entity in doc.ents]
+    return entities
+
+# Function to display sentiment and entity analysis
+def display_analysis():
+    text = text_entry.get("1.0", tk.END)
+    sentiment = get_sentiment(text)
+    entities = get_entity_analysis(text)
+    result_text.delete("1.0", tk.END)
+    result_text.insert("1.0", f"Sentiment: {sentiment}\n")
+    result_text.insert("2.0", "Entities:\n")
+    for i, (entity, label) in enumerate(entities):
+        result_text.insert(f"{2+i}", f"{entity} ({label})\n")
+
+# Create the main window
+root = tk.Tk()
+root.title("Sentiment Analysis")
+
+# Create the text entry field
+text_label = tk.Label(root, text="Enter text:")
+text_label.pack()
+text_entry = scrolledtext.ScrolledText(root, width=50, height=10)
+text_entry.pack()
+
+# Create the button to trigger analysis
+analyze_button = tk.Button(root, text="Analyze", command=display_analysis)
+analyze_button.pack()
+
+# Create the text box to display results
+result_label = tk.Label(root, text="Result:")
+result_label.pack()
+result_text = scrolledtext.ScrolledText(root, width=50, height=10)
+result_text.pack()
+
+# Start the main event loop
+root.mainloop()

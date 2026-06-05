@@ -1,0 +1,68 @@
+python
+# Import required libraries
+import spacy
+from spacy import displacy
+import tkinter as tk
+from tkinter import ttk
+import nltk
+from nltk.sentiment import SentimentIntensityAnalyzer
+
+# Load the spacy model
+nlp = spacy.load("en_core_web_sm")
+
+# Create a GUI window
+window = tk.Tk()
+window.title("Sentiment Analysis")
+
+# Create a label and text entry
+label = tk.Label(window, text="Enter a text:")
+label.grid(column=0, row=0)
+entry = tk.Text(window, height=10, width=50)
+entry.grid(column=0, row=1)
+
+# Create a button
+def analyze_sentiment():
+    text = entry.get("1.0", "end-1c")
+    doc = nlp(text)
+
+    # Create a list to store the entities
+    entities = []
+    for entity in doc.ents:
+        entities.append((entity.text, entity.label_))
+
+    # Create a label to display the entities
+    entity_label = tk.Label(window, text="Entities:")
+    entity_label.grid(column=0, row=3)
+    entity_text = tk.Text(window, height=5, width=50)
+    entity_text.grid(column=0, row=4)
+    for entity in entities:
+        entity_text.insert(tk.END, str(entity) + "\n")
+
+    # Create a label to display the sentiment
+    sentiment_sia = SentimentIntensityAnalyzer()
+    sentiment = sentiment_sia.polarity_scores(text)
+    sentiment_label = tk.Label(window, text="Sentiment:")
+    sentiment_label.grid(column=1, row=0)
+    sentiment_value = tk.Label(window, text=str(sentiment))
+    sentiment_value.grid(column=1, row=1)
+
+    # Create a button to clear the text
+    def clear_text():
+        entry.delete("1.0", tk.END)
+    clear_button = tk.Button(window, text="Clear", command=clear_text)
+    clear_button.grid(column=0, row=5)
+
+# Button to analyze the text
+analyze_button = tk.Button(window, text="Analyze", command=analyze_sentiment)
+analyze_button.grid(column=0, row=2)
+
+# Start the GUI event loop
+window.mainloop()
+
+
+Remember to download the required libraries and models before running the code. To do this, use the following commands in your terminal:
+
+- `pip install spacy`
+- `python -m spacy download en_core_web_sm`
+- `pip install nltk`
+- `nltk.download('vader_lexicon')
